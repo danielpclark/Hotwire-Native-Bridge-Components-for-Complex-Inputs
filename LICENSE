@@ -18,6 +18,10 @@ This repository contains two distinct licenses:
    - embedded code blocks immediately preceded by
      `<!-- SPDX-License-Identifier: MIT -->`.
 
+   Unmarked code examples (including inline code spans and unmarked fenced
+   blocks) are not MIT-licensed and remain under CC BY-ND 4.0 until explicitly
+   marked as MIT.
+
    Any content not explicitly marked as MIT as described above is licensed under
    CC BY-ND 4.0.
 
