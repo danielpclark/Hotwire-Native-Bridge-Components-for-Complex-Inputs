@@ -11,9 +11,12 @@ This repository contains two distinct licenses:
    To view a copy of this license, visit:
    https://creativecommons.org/licenses/by-nd/4.0/
 
-2. **Code examples in the book** are licensed under the MIT License:
+2. **Code examples in the book** are licensed under the MIT License.
+   In this repository, MIT applies only to code-example material (such as
+   standalone example code files and code snippet sections). It does not apply
+   to book prose/content, which remains under CC BY-ND 4.0.
 
-MIT License
+   MIT License
 
 Copyright (c) Daniel P. Clark
 
