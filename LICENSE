@@ -12,9 +12,12 @@ This repository contains two distinct licenses:
    https://creativecommons.org/licenses/by-nd/4.0/
 
 2. **Code examples in the book** are licensed under the MIT License.
-   In this repository, MIT applies only to code-example material (such as
-   standalone example code files and code snippet sections). It does not apply
-   to book prose/content, which remains under CC BY-ND 4.0.
+   In this repository, MIT applies only to:
+   - standalone files whose primary content is example code, and
+   - embedded code snippets (for example fenced code blocks) within prose files.
+
+   For mixed prose/code files, only the code snippets are MIT-licensed; all
+   non-code narrative/prose content remains under CC BY-ND 4.0.
 
    MIT License
 
