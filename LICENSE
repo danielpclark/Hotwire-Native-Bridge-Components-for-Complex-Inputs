@@ -16,10 +16,10 @@ This repository contains two distinct licenses:
    - CC BY-ND 4.0: `README.md`, this `LICENSE` file, and all non-code prose.
    - MIT: no standalone code-example files are currently present.
 
-   If/when standalone code-example files are added, they are MIT-licensed when
-   placed under an `examples/` directory. For mixed prose files, fenced code
-   blocks are MIT-licensed code examples, while surrounding prose remains
-   CC BY-ND 4.0.
+   If/when standalone code-example files are added, they are MIT-licensed
+   regardless of path (placing them under an `examples/` directory is preferred
+   for clarity). For mixed prose files, fenced code blocks are MIT-licensed
+   code examples, while surrounding prose remains CC BY-ND 4.0.
 
    MIT License
 
