@@ -14,6 +14,9 @@ This repository contains two distinct licenses:
 2. **Code examples in the book** are licensed under the MIT License.
    In this repository, MIT applies only to:
    - files located under any `examples/` directory, and
+   - standalone source/config files anywhere in the repository (for example:
+     `*.rb`, `*.js`, `*.ts`, `*.tsx`, `*.jsx`, `*.swift`, `*.kt`, `*.java`,
+     `*.py`, `*.go`, `*.sh`, `*.json`, `*.yml`, `*.yaml`, `*.html`, `*.css`), and
    - fenced code blocks in prose files (for example Markdown files).
 
    For fenced code blocks, MIT coverage starts at the opening code fence and
