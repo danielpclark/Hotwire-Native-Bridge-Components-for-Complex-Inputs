@@ -11,7 +11,7 @@ This repository contains two distinct licenses:
    To view a copy of this license, visit:
    https://creativecommons.org/licenses/by-nd/4.0/
 
-2. **Code examples distributed for this book** are licensed under the MIT License.
+2. **Code examples for this book under `examples/**`** are licensed under the MIT License.
    Current repository path mapping:
    - CC BY-ND 4.0: `README.md`, this `LICENSE` file, and all non-code prose.
    - MIT: none currently (`examples/**` is currently empty).
