@@ -12,17 +12,14 @@ This repository contains two distinct licenses:
    https://creativecommons.org/licenses/by-nd/4.0/
 
 2. **Code examples in the book** are licensed under the MIT License.
-   In this repository, MIT applies only to:
-   - files located under any `examples/` directory, and
-   - standalone source/config files anywhere in the repository (for example:
-     `*.rb`, `*.js`, `*.ts`, `*.tsx`, `*.jsx`, `*.swift`, `*.kt`, `*.java`,
-     `*.py`, `*.go`, `*.sh`, `*.json`, `*.yml`, `*.yaml`, `*.html`, `*.css`), and
-   - fenced code blocks in prose files (for example Markdown files).
+   In this repository, MIT applies only to code-example material explicitly
+   marked with `SPDX-License-Identifier: MIT`, specifically:
+   - standalone files that include `SPDX-License-Identifier: MIT`, and
+   - embedded code blocks immediately preceded by
+     `<!-- SPDX-License-Identifier: MIT -->`.
 
-   For fenced code blocks, MIT coverage starts at the opening code fence and
-   ends at the closing code fence, including comments and annotations inside
-   that fenced block. Captions, surrounding paragraphs, and inline code spans
-   in prose remain under CC BY-ND 4.0 unless explicitly stated otherwise.
+   Any content not explicitly marked as MIT as described above is licensed under
+   CC BY-ND 4.0.
 
    MIT License
 
