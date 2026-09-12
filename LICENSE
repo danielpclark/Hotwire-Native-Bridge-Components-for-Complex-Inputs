@@ -16,11 +16,9 @@ This repository contains two distinct licenses:
    - CC BY-ND 4.0: `README.md`, this `LICENSE` file, and all non-code prose.
    - MIT: no standalone code-example files are currently present.
 
-   If/when standalone code-example files are added, files under `examples/`
-   are MIT-licensed by default.
-
-   Files outside `examples/` and mixed prose files remain CC BY-ND 4.0 at the
-   file level unless explicitly relicensed as whole files.
+   MIT-licensed repository files are exactly those under `examples/**`.
+   All files outside `examples/**` (including Markdown and mixed-content files)
+   are CC BY-ND 4.0 unless explicitly relicensed as whole files.
 
    MIT License
 
