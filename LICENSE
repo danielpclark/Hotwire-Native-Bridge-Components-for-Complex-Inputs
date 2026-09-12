@@ -12,16 +12,14 @@ This repository contains two distinct licenses:
    https://creativecommons.org/licenses/by-nd/4.0/
 
 2. **Code examples in the book** are licensed under the MIT License.
-   In this repository, code examples include:
-   - standalone source/config code files,
-   - fenced code blocks in prose files, and
-   - inline code snippets that present commands or executable syntax.
+   Current repository path mapping:
+   - CC BY-ND 4.0: `README.md`, this `LICENSE` file, and all non-code prose.
+   - MIT: no standalone code-example files are currently present.
 
-   The code-example material above is MIT-licensed by default. SPDX markers
-   (such as `SPDX-License-Identifier: MIT`) may be used for clarity but are not
-   required to make code examples MIT-licensed.
-
-   Any non-code narrative/prose content is licensed under CC BY-ND 4.0.
+   If/when standalone code-example files are added, they are MIT-licensed when
+   placed under an `examples/` directory. For mixed prose files, fenced code
+   blocks are MIT-licensed code examples, while surrounding prose remains
+   CC BY-ND 4.0.
 
    MIT License
 
