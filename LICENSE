@@ -13,11 +13,13 @@ This repository contains two distinct licenses:
 
 2. **Code examples in the book** are licensed under the MIT License.
    In this repository, MIT applies only to:
-   - standalone files whose primary content is example code, and
-   - embedded code snippets (for example fenced code blocks) within prose files.
+   - files located under any `examples/` directory, and
+   - fenced code blocks in prose files (for example Markdown files).
 
-   For mixed prose/code files, only the code snippets are MIT-licensed; all
-   non-code narrative/prose content remains under CC BY-ND 4.0.
+   For fenced code blocks, MIT coverage starts at the opening code fence and
+   ends at the closing code fence, including comments and annotations inside
+   that fenced block. Captions, surrounding paragraphs, and inline code spans
+   in prose remain under CC BY-ND 4.0 unless explicitly stated otherwise.
 
    MIT License
 
