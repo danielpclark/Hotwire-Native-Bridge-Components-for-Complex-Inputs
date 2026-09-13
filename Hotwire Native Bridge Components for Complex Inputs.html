@@ -219,7 +219,7 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--accent); outline-o
       <span data-p="rails">Rails 7.1+</span>
       <span>hotwire-native-bridge 1.2.2</span>
       <span data-p="ios">hotwire-native-ios 1.3.0</span>
-      <span data-p="android">hotwire-native-android 1.2.x</span>
+      <span data-p="android">hotwire-native-android 1.3.1</span>
     </div>
   </header>
 
@@ -248,7 +248,7 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--accent); outline-o
 <a href="#chapter-19-debugging"><span class="nav-num">Chapter 19</span><span class="nav-t">Debugging</span></a>
 <a href="#chapter-20-field-notes-upstream-issues-worth-knowing"><span class="nav-num">Chapter 20</span><span class="nav-t">Field notes: upstream issues worth knowing</span></a>
 <a href="#chapter-21-should-this-be-a-bridge-component"><span class="nav-num">Chapter 21</span><span class="nav-t">Should this be a bridge component?</span></a>
-<a href="#appendix-a-verified-api-reference"><span class="nav-num">Appendix A</span><span class="nav-t">Verified API reference</span></a>
+<a href="#appendix-a-api-reference"><span class="nav-num">Appendix A</span><span class="nav-t">API reference</span></a>
 <a href="#appendix-b-scope-device-capabilities"><span class="nav-num">Appendix B</span><span class="nav-t">Scope: device capabilities</span></a>
       </div>
     </nav>
@@ -258,45 +258,39 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--accent); outline-o
 <p>Twenty-one chapters covering the complex form inputs: eleven complete bridge components with working Rails, JavaScript, Swift and Kotlin, and two chapters with no native code at all — Chapter 8, where HTML attributes are the answer, and Chapter 13, where Turbo Frames are. <strong>Chapter 20 collects twelve upstream issues</strong> whose symptoms point somewhere other than their cause; read it once, then return to it when something inexplicable happens. Device capabilities — upload, camera, signature, location, rich text — are outside this guide's scope, and Appendix B says what they require.</p>
 <p><strong>The architecture this guide assumes.</strong> One Rails app serving a complete, browser-first website to everyone. Forms are ordinary Rails forms and they work in a plain browser. The native iOS and Android apps load those same URLs through Hotwire Native, and only <em>parts</em> of some pages are swapped for native-aware versions. The site is the product; native is a set of swap points on top of it. Chapter 3 covers the server side of that arrangement; everything after it is the bridge components themselves.</p>
 <hr />
-<h2 id="verified-against">Verified against</h2>
-<p>Every API in this guide was read from library source, not from documentation prose. Where this guide and the docs site disagree, the source won.</p>
+<h2 id="target-versions">Target versions</h2>
 <table>
 <thead>
 <tr>
 <th>Component</th>
 <th>Version</th>
-<th>Verified from</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>@hotwired/hotwire-native-bridge</code></td>
 <td><strong>1.2.2</strong></td>
-<td><code>dist/hotwire-native-bridge.js</code> on jsDelivr</td>
 </tr>
 <tr>
 <td><code>hotwire-native-ios</code></td>
 <td><strong>1.3.0</strong></td>
-<td><code>Demo/Bridge/*.swift</code> on <code>main</code></td>
 </tr>
 <tr>
 <td><code>hotwire-native-android</code></td>
-<td><strong>1.2.x</strong></td>
-<td><code>demo/src/main/kotlin/dev/hotwire/demo/bridge/*.kt</code> on <code>main</code></td>
+<td><strong>1.3.1</strong></td>
 </tr>
 <tr>
 <td><code>turbo-rails</code></td>
-<td>current <code>main</code></td>
-<td><code>app/controllers/turbo/native/navigation.rb</code></td>
+<td>current</td>
 </tr>
 <tr>
 <td>Rails</td>
 <td>7.1+</td>
-<td>—</td>
 </tr>
 </tbody>
 </table>
-<p>The exact API surface confirmed by that reading is in <strong>Appendix A</strong>. Three things people commonly get wrong, all confirmed:</p>
+<p>These libraries move, and API details in this guide may be behind or ahead of what you have installed. Check anything surprising against the source of the version you are actually running before building on it. <strong>Appendix A</strong> records the API surface this guide was written against.</p>
+<p>Four things people commonly get wrong:</p>
 <ul>
 <li>iOS has <strong>both</strong> <code>reply(to:)</code> and <code>reply(to:with:)</code> — the second takes any <code>Encodable</code>.</li>
 <li>Android's generic parameter is <strong><code>HotwireDestination</code></strong>, not the older <code>BridgeDestination</code>.</li>
@@ -310,7 +304,7 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--accent); outline-o
 <p><strong>If you are an agent:</strong> Chapters 1–4 are prerequisites for every component chapter. Component chapters have a fixed structure — <em>the web problem · the contract · the code (Rails → JS → CSS → Swift → Kotlin) · wiring · verification · gotchas</em>. Every code block is complete; there are no elisions and no <code>// ...</code>. Each block's first line is a path comment telling you where to write it.</p>
 <p><strong>Conventions used throughout:</strong></p>
 <ul>
-<li><code>⚠️</code> marks something unverified or version-sensitive.</li>
+<li><code>⚠️</code> marks something version-sensitive or dependent on behavior that may differ across platforms and releases.</li>
 <li>Package names assume a Rails app with importmap, an iOS app with the component files under <code>Bridge/</code>, and an Android app under <code>dev.hotwire.demo.bridge</code>. Adjust paths to your own layout; nothing else changes.</li>
 <li>Dates on the wire are always <strong>ISO-8601 strings in UTC</strong>. Chapter 10 explains why this is not negotiable.</li>
 </ul>
@@ -2214,7 +2208,7 @@ class SelectComponent(
 <li><strong>The dialog reopens immediately after choosing.</strong> You called <code>blur()</code> after <code>preventDefault()</code> but the select still had focus when Turbo restored the page. Confirm <code>selectTargetDisconnected</code> removes the listener.</li>
 </ol>
 <blockquote class="cal cal--warn">
-<p>⚠️ <strong>The one behavior in this chapter that is not confirmed by library source.</strong> Everything else here comes from the libraries themselves; this comes from observed browser behavior, which is a weaker footing. The design depends on <code>preventDefault()</code> during <code>mousedown</code> reliably suppressing <strong>the WebView's own</strong> <code>&lt;select&gt;</code> picker — on WKWebView and on Android's Chromium WebView, across the OS versions you support.</p>
+<p>⚠️ <strong>The least certain assumption in this chapter.</strong> It is not an API contract but browser behavior, which varies by engine and has changed before. The design depends on <code>preventDefault()</code> during <code>mousedown</code> reliably suppressing <strong>the WebView's own</strong> <code>&lt;select&gt;</code> picker — on WKWebView and on Android's Chromium WebView, across the OS versions you support.</p>
 <p>Touch event ordering on a <code>&lt;select&gt;</code> is browser-specific and has changed before. If it fails, the symptom is unmistakable: <strong>two pickers, the system one on top of yours.</strong> Try <code>pointerdown</code> first, since it fires ahead of <code>mousedown</code> in both engines.</p>
 <p>If neither suppresses it, stop intercepting and switch to Chapter 11's shape instead — hide the <code>&lt;select&gt;</code> with CSS and give native its own summary button to tap. That pattern needs no interception at all, which is why Chapter 11 does not carry this warning. Test this on a real device before building more components on top of the interception approach; Chapters 10 and 12 make the same assumption about <code>&lt;input type="date"&gt;</code>.</p>
 </blockquote>
@@ -6474,8 +6468,8 @@ or does the browser load an enhancement the app shouldn't?
 </table>
 <p>Four rows say <strong>don't</strong>, and they are the ones worth reading twice. "Dependent selects" and "multi-step wizard" both have no native control at all, so the answer is a better server-side design (Chapters 13 and 16). "Nested fieldset rows" has no native control for the rows themselves, so only the surrounding affordances move (Chapter 15). And "unsaved-changes guard" is the opposite case — the only row where a bridge component isn't an improvement but the <em>sole</em> option, because the native back gesture produces no web event at all.</p>
 <hr />
-<h1 id="appendix-a-verified-api-reference">Appendix A — Verified API reference</h1>
-<p>Read from library source at the versions in the front matter. This is the authoritative surface for everything in this guide.</p>
+<h1 id="appendix-a-api-reference">Appendix A — API reference</h1>
+<p>The API surface this guide was written against, at the versions in the front matter. Confirm anything load-bearing against the version you have installed.</p>
 <h2 id="a1-web-hotwiredhotwire-native-bridge-122">A.1 Web — <code>@hotwired/hotwire-native-bridge</code> 1.2.2</h2>
 <figure class="code" data-plat="diagram"><pre><code class="nohighlight">class BridgeComponent extends Controller {
   static component = &quot;&quot;          // must match the native component name
@@ -6531,7 +6525,7 @@ Screen access: <code>delegate?.destination as? UIViewController</code></p>
 <blockquote class="cal cal--note">
 <p><code>message.data()</code> returns an <strong>optional</strong> and swallows decode errors. A typo in a payload key produces <code>nil</code>, not a crash and not a log line. <code>guard let data: MessageData = message.data() else { return }</code> is silent failure — add a debug log to that <code>else</code> branch during development.</p>
 </blockquote>
-<h2 id="a3-android-hotwire-native-android-12x">A.3 Android — <code>hotwire-native-android</code> 1.2.x</h2>
+<h2 id="a3-android-hotwire-native-android-131">A.3 Android — <code>hotwire-native-android</code> 1.3.1</h2>
 <figure class="code" data-plat="android"><div class="code-head" data-plat="android"><span class="code-plat">Kotlin</span></div><pre><code class="language-kotlin">abstract class BridgeComponent&lt;D : BridgeDestination&gt;(
     name: String,
     delegate: BridgeDelegate&lt;D&gt;
@@ -6726,7 +6720,7 @@ refresh_or_redirect_back_or_to(url, **options)
 <li><a href="https://jessewaites.com/blog/post/debugging-custom-bridge-components-in-hotwire-native/">Jesse Waites — Debugging custom Bridge Components in Hotwire Native</a></li>
 <li><a href="https://masilotti.com/bridge-component-library/">Joe Masilotti — bridge component library</a></li>
 </ul>
-      <footer class="end">APIs read from library source, not documentation prose.</footer>
+      <footer class="end">Written against hotwire-native-bridge 1.2.2 · ios 1.3.0 · android 1.3.1 · Rails 7.1+</footer>
     </main>
   </div>
 </div>
